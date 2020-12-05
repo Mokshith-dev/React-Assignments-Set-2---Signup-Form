@@ -9,7 +9,7 @@ const App = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const alphaNumeric = /^[0-9a-zA-Z]+$/;
+
   const onChangeInName = (event) => {
     setName(event.target.value);
   };
@@ -26,6 +26,11 @@ const App = () => {
     setPassword(event.target.value);
   };
   const handleSubmit = () => {
+    const alphaNumeric = /^[0-9a-zA-Z]+$/;
+    const numbers = /^\d+$/;
+    setUserName("");
+    console.log(parseInt(phoneNumber));
+    console.log(isNaN(parseInt(phoneNumber)));
     if (
       name === "" ||
       email === "" ||
@@ -47,7 +52,7 @@ const App = () => {
     if (!gender) {
       setError("Please identify as male, female or others");
     }
-    if (isNaN(parseInt(phoneNumber))) {
+    if (!numbers.test(phoneNumber)) {
       setError("Phone Number must contain only numbers");
       return;
     }
@@ -64,7 +69,7 @@ const App = () => {
       {userName ? <div>Hello {userName}</div> : ""}
       <input
         data-testid="name"
-        type="string"
+        type="text"
         placeholder="name"
         value={name}
         onChange={onChangeInName}
@@ -83,7 +88,7 @@ const App = () => {
       </select>
       <input
         data-testid="phoneNumber"
-        type="string"
+        type="text"
         placeholder="Phone Number"
         value={phoneNumber}
         onChange={onChangeInPhoneNumber}
