@@ -26,24 +26,8 @@ const App = () => {
     setPassword(event.target.value);
   }
   const handleSubmit =() => {
-    if(!name && !email && !gender && !phoneNumber && !password) {
+    if(name === "" || email === "" || gender === "" || phoneNumber === "" || password === "") {
       setError("All fields are mandatory");
-      return;
-    }
-    if(!name ) {
-      setError("Name Error");
-      return;
-    }
-    if(!email) {
-      setError("Email Error");
-      return;
-    }
-    if(!phoneNumber) {
-      setError("Phone Number Error");
-      return;
-    }
-    if(!password) {
-      setError("Password Error");
       return;
     }
     if(!name.match(alphaNumeric)) {
@@ -53,6 +37,9 @@ const App = () => {
     if(!email.includes('@')) {
       setError("Email must contain @");
       return;
+    }
+    if(!gender) {
+      setError("Please identify as male, female or others");
     }
     if(isNaN(parseInt(phoneNumber))) {
       setError("Phone Number must contain only numbers");
